@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thai Dessert</title>
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+
+<body class="px-20 py-16 bg-blue-100">
+  <div id="app">
+    <div class="mb-8 grid grid-cols-2 grid-rows-1">
+      <div class="text-3xl font-bold inline-block">Thai Dessert ( {{countLike}} )</div>
+      <div class="text-right">
+        <div v-if="searchBoxOpen" class="inline-block">
+          <input v-model="inputs" placeholder="Searching ... " class="border w-64 px-2">
+          <button @click="switchSearch" class="ml-2 bg-red-500 text-white py-1 px-2 rounded">Cancle</button>
+        </div>
+        <i v-else="searchBoxOpen" class="material-icons inline-block text-2xl align-text-bottom"
+          @click="switchSearch">search</i>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 auto-rows-auto gap-10 ">
+      <div v-if="showImages"></div>
+      <div v-if="showImages">
+        <div class="bg-black text-xl rounded font-medium mt-6 py-4 mx-auto my-auto">
+          <div class="px-auto">
+            <span class="material-icons select-none flex justify-end mt-2 mb-3 mx-1 text-white" @click="hideImg">cancel</span>
+            <img class="w-96 h-60 mx-auto" :src="filteredList[currentIndex].url">
+          </div>
+          <p class="pt-2 text-center text-lg text-white" v-if="showImages"> {{ filteredList[currentIndex].name }} </p>
+          <p class="p-2 my-28 text-lg	text-center text-white" v-else>Preview here.</p>
+        </div>
+      </div>
+      <div v-if="showImages"></div>
+      <div v-for="(t,index) in filteredList" class="mx-auto">
+        <img :src="t.url" class="w-72 h-44" @click="showImg(index)">
+        <p class="text-center mt-4 text-xl select-none">
+          <i v-if="t.isLike" class="material-icons text-red-400 text-base" v-on:dblclick="likeIt(index)">favorite</i>
+          <i v-else class="material-icons text-base" v-on:dblclick="likeIt(index)">favorite_border</i>
+          {{t.name}}
+        </p>
+      </div>
+    </div>
+    <div v-if="searchFound" class="text-center mt-4 text-7xl">Photo Not Found !!!</div>
+  </div>
+
+  <!-- my main.js -->
+  <script src="./main.js"></script>
+</body>
+
+</html>

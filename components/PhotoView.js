@@ -12,7 +12,7 @@ app.component('photo-views',{
     /*html*/
     template:
     `
-    <div class="grid grid-cols-3 auto-rows-auto gap-10 ">
+    <div class="grid grid-cols-3 auto-rows-auto gap-10 mb-10">
         <div v-if="showImages"></div>
         <div v-if="showImages">
           <div class="bg-black text-xl rounded font-medium mt-6 py-4 mx-auto my-auto">

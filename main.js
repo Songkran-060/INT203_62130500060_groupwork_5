@@ -25,10 +25,11 @@ const app = Vue.createApp({
         this.inputs = search;
       },
       showImg(index) {
+        this.showImages = true
         this.currentIndex = index;
       },
       hideImg() {
-      this.showImages = false;
+        this.showImages = false;
       }
     },
     computed: {

@@ -22,12 +22,12 @@
 
 <body class="px-20 py-16 bg-blue-100">
   <div id="app">
-    <photo-searchs/>
-    <div class="grid grid-cols-3 auto-rows-auto gap-10 ">
-      <photo-views/>
-      <photo-items/>
+    <div class="mb-8 grid grid-cols-2 grid-rows-1">
+      <div class="text-3xl font-bold inline-block">Thai Dessert ( {{countLike}} )</div>
+      <photo-searchs :thaides="thaides" @search="search"/>
     </div>
-    <div v-if="searchFound" class="text-center mt-4 text-7xl">Photo Not Found !!!</div>
+    <photo-views :thaides="thaides" :current-index="currentIndex" :show-images="showImages" @hide-img="hideImg"/>
+    <photo-items :thaides="thaides" :search-found="searchFound" :filtered-list="filteredList" @show-images="showImages" @show-img="showImg"/>
   </div>
 
   <!-- Import main.js -->
@@ -35,10 +35,9 @@
 
   <!-- Import Components -->
   <!-- mount App -->
-  <script>Vue.createApp(app)</script>
-  <script src="./components/PhotoItem.js"></script>
   <script src="./components/PhotoSearch.js"></script>
   <script src="./components/PhotoView.js"></script>
+  <script src="./components/PhotoItem.js"></script>
   <script>app.mount('#app')</script>
 </body>
 

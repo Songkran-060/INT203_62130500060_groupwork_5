@@ -1,4 +1,4 @@
-const app = {
+const app = Vue.createApp({
   data() {
     return {
       thaides: [{name: 'Bu Lan Dan Mek',url: './images/1.jpg',isLike: false},
@@ -11,35 +11,40 @@ const app = {
                 {name: 'Look Chub',url: './images/8.jpg',isLike: false},
                 {name: 'Thong Eak',url: './images/9.jpg',isLike: false} ],
       inputs: '',
+      searchBoxOpen: false,
       searchFound: false,
       showImages: false,
-      currentIndex: 0 
-    }
-  },
-  methods: {
-    likeIt(index) {
-      this.thaides[index].isLike = !this.thaides[index].isLike
+      currentIndex: 0
+      }
     },
-    
-  },
-  computed: {
-    countLike() {
-      return this.thaides.filter(t => t.isLike).length
+    methods: {
+      search(search) {
+        this.inputs = search;
+      },
+      showImg(index) {
+        this.currentIndex = index;
+      },
+      hideImg() {
+      this.showImages = false;
+      }
     },
-    filteredList() {
-      this.searchFound = false
-      if (this.inputs == '') {
-        return this.thaides
-      } else {
-        let f = this.thaides.filter(t => this.inputs.toLowerCase().split(' ').every(v => t.name.toLowerCase().includes(v)))
-        if (f == '') {
-          this.searchFound = true
+    computed: {
+      countLike() {
+        return this.thaides.filter(t => t.isLike).length
+      },
+      filteredList() {
+        this.searchFound = false
+        if (this.inputs == '') {
+            return this.thaides
         } else {
-          return f
+          let f = this.thaides.filter(t => this.inputs.toLowerCase().split(' ').every(v => t.name.toLowerCase().includes(v)))
+          if (f == '') {
+            this.searchFound = true
+          } else {
+            return f
+          }
         }
       }
+          
     }
-
-  }
-
-}
+})

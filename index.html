@@ -24,10 +24,10 @@
   <div id="app">
     <div class="mb-8 grid grid-cols-2 grid-rows-1">
       <div class="text-3xl font-bold inline-block">Thai Dessert ( {{countLike}} )</div>
-      <photo-searchs :thaides="thaides" @search="search"/>
+      <photo-searchs :thaides="thaides" @search="search"></photo-searchs>
     </div>
-    <photo-views :thaides="thaides" :current-index="currentIndex" :show-images="showImages" @hide-img="hideImg"/>
-    <photo-items :thaides="thaides" :search-found="searchFound" :filtered-list="filteredList" @show-images="showImages" @show-img="showImg"/>
+    <photo-views :filtered-list="filteredList" :current-index="currentIndex" :show-images="showImages" @show-img="showImg" @hide-img="hideImg"></photo-views>
+    <photo-items :thaides="thaides" :search-found="searchFound" :filtered-list="filteredList" @show-img="showImg" @like-it="likeIt"></photo-items>
   </div>
 
   <!-- Import main.js -->

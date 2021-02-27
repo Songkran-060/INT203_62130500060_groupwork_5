@@ -14,10 +14,10 @@ app.component('photo-items',{
     `
     <div class="grid grid-cols-3 auto-rows-auto gap-10 ">
     <div v-for="(t,index) in filteredList" class="mx-auto">
-      <img :src="t.url" class="w-72 h-44" @click="showImg(index)">
+      <img :src="t.url" class="w-72 h-44 rounded-3xl" @click="showImg(index)">
       <p class="text-center mt-4 text-xl select-none">
-        <i v-if="t.isLike" class="material-icons text-red-400 text-base" v-on:dblclick="likeIt(index)">favorite</i>
-        <i v-else class="material-icons text-base" v-on:dblclick="likeIt(index)">favorite_border</i>
+        <i v-if="t.isLike" class="material-icons text-red-400 text-lg" v-on:dblclick="likeIt(index)">favorite</i>
+        <i v-else class="material-icons text-lg" v-on:dblclick="likeIt(index)">favorite_border</i>
             {{t.name}}
       </p>
     </div>
@@ -32,12 +32,13 @@ app.component('photo-items',{
       },
       methods: {
         likeIt(index) {
-          this.thaides[index].isLike = !this.thaides[index].isLike
+          this.currentIndex = index
+          this.$emit('like-it',this.currentIndex)
         },
-        imgClicked(id) {
-          this.currentIndex = id;
-          this.showImages = true;
-          this.$emit('show-img', this.currentIndex);
+        showImg(index) {
+          this.currentIndex = index
+          this.showImages = true
+          this.$emit('show-img', this.currentIndex)
           this.$emit('show-images', this.showImages)
         }
       }

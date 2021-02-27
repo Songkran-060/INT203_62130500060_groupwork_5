@@ -1,11 +1,12 @@
 app.component('photo-views',{
   props:{
-    thaides:{
-      type: Array,
-      require:true
-    },
-    'show-images': Boolean,
-    'current-index': Number
+    // thaides:{
+    //   type: Array,
+    //   require:true
+    // },
+    filteredList: Array,
+    showImages: Boolean,
+    currentIndex: Number
   },
 
     /*html*/
@@ -28,7 +29,7 @@ app.component('photo-views',{
     `,
     methods: {
       hideImg() {
-        this.$emit('hideimg',this.showImages);
+        this.$emit('hide-img',this.showImages);
         }
     }
 

@@ -18,6 +18,9 @@ const app = Vue.createApp({
       }
     },
     methods: {
+      likeIt(index) {
+        this.filteredList[index].isLike = !this.filteredList[index].isLike
+      },
       search(search) {
         this.inputs = search;
       },
@@ -30,7 +33,7 @@ const app = Vue.createApp({
     },
     computed: {
       countLike() {
-        return this.thaides.filter(t => t.isLike).length
+        return this.filteredList.filter(t => t.isLike).length
       },
       filteredList() {
         this.searchFound = false

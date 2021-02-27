@@ -4,7 +4,7 @@ const app = Vue.createApp({
       thaides: [{name: 'Bu Lan Dan Mek',url: './images/1.jpg',isLike: false},
                 {name: 'Bu Lan Dan Mhok',url: './images/2.jpg',isLike: false},
                 {name: 'Ja Mong Kut (Original)',url: './images/3.jpg',isLike: false},
-                {name: 'Ja Mong Kut (Now)',url: './images/4.jpg',},
+                {name: 'Ja Mong Kut (Now)',url: './images/4.jpg',isLike: false},
                 {name: 'Leum Guen',url: './images/5.jpg',isLike: false},
                 {name: 'Phra Pai',url: './images/6.jpg',isLike: false},
                 {name: 'Cho maung',url: './images/7.jpg',isLike: false},
@@ -34,7 +34,7 @@ const app = Vue.createApp({
     },
     computed: {
       countLike() {
-        return this.filteredList.filter(t => t.isLike).length
+        return this.thaides.filter(t => t.isLike).length
       },
       filteredList() {
         this.searchFound = false
